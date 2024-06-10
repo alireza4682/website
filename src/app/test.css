@@ -1,0 +1,12 @@
+.mycomp {
+  font-size: 1rem;
+  color: white;
+}
+.mycomp::before {
+  content: "-> ";
+  background-color: white;
+  color: black;
+}
+.outer p {
+  color: blue;
+}
