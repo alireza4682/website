@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import ModeToggle from "@/app/mode-toggle";
+import { cookies } from "next/headers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,9 +16,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const savedTheme = cookies().get("color-theme");
+  const theme = savedTheme?.value || "light";
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" className={theme}>
+      <body className={inter.className}>
+        <ModeToggle initialTheme={theme} />
+        {children}
+      </body>
     </html>
   );
 }
